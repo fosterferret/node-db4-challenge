@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
       res.status(200).json(recipes);
     })
     .catch(err => {
-      res.status(500).json({ message: "Failed to get recipes" });
+      res.status(500).json({ message: "error retrieving recipes" });
     });
 });
 
@@ -18,15 +18,17 @@ router.get("/:id/shoppingList", (req, res) => {
       if (ingredients.length) {
         res.status(200).json(ingredients);
       } else {
-        res
-          .status(400)
-          .json({ message: "Could not find ingredients for that recipe" });
+        res.status(400).json({
+          message: "Could not retrieve the ingredients for that recipe"
+        });
       }
     })
     .catch(err => {
       res
         .status(500)
-        .json({ message: "Failed to get shopping list for that recipe" });
+        .json({
+          message: "Could not retrieve the shopping list for that recipe"
+        });
     });
 });
 
@@ -38,13 +40,17 @@ router.get("/:id/instructions", (req, res) => {
       } else {
         res
           .status(400)
-          .json({ message: "Could not find instructions for that recipe" });
+          .json({
+            message: "Could not retrieve the instructions for that recipe"
+          });
       }
     })
     .catch(err => {
       res
         .status(500)
-        .json({ message: "Failed to get instructions for that recipe" });
+        .json({
+          message: "Could not retrieve the instructions for that recipe"
+        });
     });
 });
 
